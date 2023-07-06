@@ -1,21 +1,18 @@
 /*
-    Васи положил 12 000$ на вклад 7% годовых с капитализацией 1 раз в месяц. Вывести в консоль, сможет ли он купить дом за 13 500$ через 2 года после снятия вклада. И остаток после покупки.
-    Итог = Сумма * (1 + Ставка в месяц не в %) ^ срок в месяцах
+    Методом prompt получите ответ пользователя на вопрос "Сколько будет 7 + или - 15?". Если ответ верен, выведите в консоли "Успех", если нет - "Вы робот!", а если он введёт "Я не робот", то тоже "Успех".
 */
 
-const months = 24;
-const deposit = 12000;
-const rate = 7;
-const needsMoney = 13500;
+const result = prompt("Сколько будет 7 + или - 15?");
+let isRobot;
 
-const resultSumm = deposit * (1 + rate / 100 / 12) ** months;
-
-let text = '';
-
-if (resultSumm > needsMoney) {
-    text = `Денег на покупку дома хватит. Остаток составляет ${resultSumm - needsMoney}`;
-} else {
-    text = `Денег не хватит на покупку дома. Не хватает ${needsMoney - resultSumm}`;
+switch(true) {
+    case result === "Я не робот":
+    case Number(result) === 22:
+    case Number(result) === -8:
+        isRobot = false;
+        break;
+    default:
+        isRobot = true;
 }
 
-console.log(text);
+console.log(isRobot ? 'Вы робот!' : 'Успех!');
