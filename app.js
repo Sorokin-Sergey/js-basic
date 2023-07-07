@@ -1,50 +1,18 @@
 /*
-    Дан список задач
-    const tasks = ['Задача 1'];
-
-    Сделать функции:
-    Добавление задачи в конец
-    Удаление задачи по названию
-    Перенос задачи в начало списка по названию
-    ! Всегда меняем исходный массив
+    Дан произвольный url вида - https://purpleschool.ru/course/javascript
+    Нужно сделать функцию, которая выводит в консоль:
+    Протокол (https)
+    Доменное имя (purpleschool.ru)
+    Путь внутри сайта (/course/javascript)
 */
 
-class Tasks {
-    constructor (tasks) {
-        this.tasks = tasks;
-    }
+const url = 'https://purpleschool.ru/course/javascript';
 
-    addTask = taskName => this.tasks.push(taskName);
+function parseUrl (url) {
+    const [protocol, _, host, ...path] = url.split('/');
 
-    removeTaskByName = taskName => {
-        const index = this.tasks.indexOf(taskName);
-        if (index == -1) {
-            return;
-        } else {
-            return this.tasks.splice(index, 1);
-        }
-    }
-
-    swapToFIrst = taskName => {
-        const res = this.removeTaskByName(taskName);
-        if (!res) {
-            return;
-        }
-        this.tasks.unshift(taskName);
-    }
+    return [protocol.split(':')[0], host, '/' + path.join('/')];
 }
 
-const tasks = new Tasks(['Задача 1']);
-
-tasks.addTask('Задача 2');
-tasks.addTask('Задача 3');
-console.log(tasks.tasks);
-tasks.removeTaskByName('Задача 1');
-tasks.removeTaskByName('Задача 10');
-console.log(tasks.tasks);
-tasks.addTask('Задача 1');
-console.log(tasks.tasks);
-tasks.swapToFIrst('Задача 1');
-tasks.swapToFIrst('Задача 10');
-
-console.log(tasks.tasks);
+const [http, domain, ext] = parseUrl(url);
+console.log(http, domain, ext);
