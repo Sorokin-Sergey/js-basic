@@ -1,18 +1,14 @@
-/*
-    Дан произвольный url вида - https://purpleschool.ru/course/javascript
-    Нужно сделать функцию, которая выводит в консоль:
-    Протокол (https)
-    Доменное имя (purpleschool.ru)
-    Путь внутри сайта (/course/javascript)
+/* 
+    Задача вывести в консоль строку "Я люблю JS !" из массива,
+    проходя циклом в обратном порядке, не используя метод reverse.
+    const arr = ['!', 'JS', 'люблю', 'Я'];
 */
 
-const url = 'https://purpleschool.ru/course/javascript';
+const arr = ['!', 'JS', 'люблю', 'Я'];
+const newArr = [];
 
-function parseUrl (url) {
-    const [protocol, _, host, ...path] = url.split('/');
-
-    return [protocol.split(':')[0], host, '/' + path.join('/')];
+for (let i = arr.length-1; i >= 0; i--) {
+    newArr.push(arr[i]);
 }
 
-const [http, domain, ext] = parseUrl(url);
-console.log(http, domain, ext);
+console.log(newArr.join(' '));
