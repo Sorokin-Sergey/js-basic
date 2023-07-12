@@ -1,9 +1,38 @@
-/*
-    Создание случайной карты и маскировка первых 12 символов
-*/
+// Отсортировать пользователей по возрасту
 
-const card = Array.from({ length: 16 }, () => Math.floor(Math.random() * 10)).join('');
-const secretCard = card.slice(-4).padStart(16, '*');
+// const users = [
+//     {name: 'Вася', age: 30},
+//     {name: 'Катя', age: 18},
+//     {name: 'Аня', age: 40},
+//     {name: 'Петя', age: 25},
+// ];
 
-console.log(card);
-console.log(secretCard);
+// users.sort((a, b) => a.age - b.age);
+
+
+// Преобразовать объекты до вида
+// { fullName: '', skillNum }
+
+const users = [
+    {
+        name: 'Вася',
+        surname: 'Пупкин',
+        age: 30,
+        skills: ['Разработка', 'Dev0ps']
+    },
+    {
+        name: 'Катя',
+        surname: 'Белова',
+        age: 18,
+        skills: ['Дизайн']
+    },
+]
+
+const newUsers = users.map(user => {
+    return {
+        fullName: `${user.name} ${user.surname}`,
+        skillNum: user.skills.length
+    }
+});
+
+console.log(newUsers);
