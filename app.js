@@ -1,38 +1,43 @@
-// Отсортировать пользователей по возрасту
+/* Реализовать методы увеличения и уменьшения баланса,
+при котором каждая операция сохраняется в массив
+operations в виде { reason: 'Оплата налогов', sum: -100 }.
+Возвращается true, если успешно и false, если не зватает баланса.
+Также реализовать метод вывода числа операций по кошельку
+*/
 
-// const users = [
-//     {name: 'Вася', age: 30},
-//     {name: 'Катя', age: 18},
-//     {name: 'Аня', age: 40},
-//     {name: 'Петя', age: 25},
-// ];
-
-// users.sort((a, b) => a.age - b.age);
-
-
-// Преобразовать объекты до вида
-// { fullName: '', skillNum }
-
-const users = [
-    {
-        name: 'Вася',
-        surname: 'Пупкин',
-        age: 30,
-        skills: ['Разработка', 'Dev0ps']
+const wallet = {
+    balance: 0,
+    operations: [],
+    increase: function(reason, sum) {
+        this.balance += sum;
+        this.saveOperation(reason, sum);
+        return true;
     },
-    {
-        name: 'Катя',
-        surname: 'Белова',
-        age: 18,
-        skills: ['Дизайн']
+    decrease: function(reason, sum) {
+        if (this.balance < sum) {
+            return false;
+        }
+        this.balance -= sum;
+        this.saveOperation(reason, -sum);
+        return true;
     },
-]
-
-const newUsers = users.map(user => {
-    return {
-        fullName: `${user.name} ${user.surname}`,
-        skillNum: user.skills.length
+    getCountOperations: function() {
+        return this.operations.length;
+    },
+    saveOperation: function(reason, sum) {
+        this.operations.push({
+            reason,
+            sum
+        });
     }
-});
+};
 
-console.log(newUsers);
+console.log(wallet.getCountOperations());
+console.log(wallet.decrease('Оплата налогов', 100));
+console.log(wallet.getCountOperations());
+console.log(wallet.increase('ЗП', 200));
+console.log(wallet.getCountOperations());
+console.log(wallet.decrease('Оплата налогов', 100));
+console.log(wallet.getCountOperations());
+console.log(wallet.balance);
+console.log(wallet.operations);
